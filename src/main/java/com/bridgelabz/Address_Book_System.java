@@ -2,11 +2,9 @@ package com.bridgelabz;
 
 import java.util.ArrayList;
 
-// Use case 7:
-// Ability to ensure there is no Duplicate Entry of the same Person in a particular Address Book
-// Duplicate Check is done on Person Name while adding person to Address Book.
-// Use Collection Methods to Search Person by Name for Duplicate Entry Override equals method
-// to check for Duplicate
+// Use case 8:
+// Ability to search Person in a City or State across the multiple AddressBook
+// Search Result can show multiple person in the city or state
 // Use Java Streams
 class Contact{
     String first_name,last_name,address,city,state,email,phone_number;
@@ -28,6 +26,21 @@ class Contact{
     ArrayList<Contact> allContacts = new ArrayList<>();
     void setAllContacts(ArrayList<Contact> allContacts){
         this.allContacts = allContacts;
+    }
+    // Search person using city or state
+    String searchPersonUsingCityOrState(String cityOrState){
+        ArrayList<Contact> filteredContacts = new ArrayList<>();
+        allContacts.stream()
+                .filter(p->p.getCity().equals(cityOrState)
+                        | p.getState().equals(cityOrState))
+                .forEach(filteredContacts::add);
+//        filteredContacts.forEach(System.out::println);
+        String temp="";
+        for(Contact c: filteredContacts){
+            temp = temp.concat(c.toString());
+        }
+        System.out.println(temp);
+        return temp;
     }
     String addContact(Contact obj){
         Contact tempContact = allContacts.stream()
