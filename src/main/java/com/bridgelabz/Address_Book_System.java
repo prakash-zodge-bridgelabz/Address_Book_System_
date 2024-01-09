@@ -5,10 +5,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-// Use case 9:
-// Ability to view Persons by City or State
-// - Maintain Dictionary of City and Person as well as State and Person
-// - Use Collection Library to maintain Dictionary
+// Use case 10:
+// Ability to get number of contact persons i.e. count by City or State
+// - Search Result will show count by city and by state
 // - Use Java Streams
 class Contact{
     String first_name,last_name,address,city,state,email,phone_number;
@@ -48,6 +47,32 @@ class Contact{
                 .map(Contact::getFirst_name)
                 .collect(Collectors.toList());
         return contactNames;
+    }
+    // Ability to get number of contact persons i.e. count by City or State
+    // - Search Result will show count by city and by state
+    int getCountByCity(String city){
+        List<String> contactNames = new ArrayList<>();
+        contactNames= cityPersonMap.values().stream()
+                .filter(contact -> contact.getCity().equals(city))
+                .map(Contact::getFirst_name)
+                .collect(Collectors.toList());
+        int count = 0;
+        for(String c: contactNames){
+            count++;
+        }
+        return count;
+    }
+    int getCountByState(String state){
+        List<String> contactNames = new ArrayList<>();
+        contactNames= cityPersonMap.values().stream()
+                .filter(contact -> contact.getState().equals(state))
+                .map(Contact::getFirst_name)
+                .collect(Collectors.toList());
+        int count = 0;
+        for(String c: contactNames){
+            count++;
+        }
+        return count;
     }
     // View persons by state
     List<String>  viewPersonByState(String state){

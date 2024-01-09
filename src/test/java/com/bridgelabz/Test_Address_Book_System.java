@@ -9,10 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// Use case 9, test case:
-// Ability to view Persons by City or State
-// - Maintain Dictionary of City and Person as well as State and Person
-// - Use Collection Library to maintain Dictionary
+// Use case 10, test case:
+// Ability to get number of contact persons i.e. count by City or State
+// - Search Result will show count by city and by state
 // - Use Java Streams
 public class Test_Address_Book_System {
     ArrayList<Contact> allContacts = new ArrayList<>();
@@ -90,5 +89,19 @@ public class Test_Address_Book_System {
         contactNames.add("Pavan");
         contactNames.add("Nikhil");
         Assert.assertEquals(contactNames,actual);
+    }
+    // Ability to get number of contact persons i.e. count by City or State
+// - Search Result will show count by city and by state
+    @Test
+    public void test_getCountByCity(){
+        int actual = c.getCountByCity("Aurangabad");
+        int expected = 1;
+        Assert.assertEquals(expected,actual);
+    }
+    @Test
+    public void test_getCountByState(){
+        int actual = c.getCountByState("Maharashtra");
+        int expected = 2;
+        Assert.assertEquals(expected,actual);
     }
 }
