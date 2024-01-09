@@ -5,11 +5,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-// Use case 11:
-// Ability to sort the entries in the address book alphabetically by Person’s name
-// - Use Console to sort person details by name
+// Use case 12:
+// Ability to sort the entries in the address book by City, State, or Zip
+// - Write functions to sort person by City, State or Zip
 // - Use Collection Library for Sorting
-// - Override toString method to finally Print Person Entry in Console
 // - Use Java Streams
 class Contact{
     String first_name,last_name,address,city,state,email,phone_number;
@@ -38,6 +37,30 @@ class Contact{
         sortedAllContacts = allContacts;
         sortedAllContacts.sort((o1, o2) ->
                 o1.getFirst_name().compareTo(o2.getFirst_name()));
+        String temp="";
+        for(Contact c: sortedAllContacts){
+            temp = temp.concat(c.toString());
+        }
+        return temp;
+    }
+    // Ability to sort the entries in the address book by City, State, or Zip
+    // - Write functions to sort person by City, State or Zip
+    String sortedByCity(){
+        ArrayList<Contact> sortedAllContacts = new ArrayList<>();
+        sortedAllContacts = allContacts;
+        sortedAllContacts.sort((o1, o2) ->
+                o1.getCity().compareTo(o2.getCity()));
+        String temp="";
+        for(Contact c: sortedAllContacts){
+            temp = temp.concat(c.toString());
+        }
+        return temp;
+    }
+    String sortedByState(){
+        ArrayList<Contact> sortedAllContacts = new ArrayList<>();
+        sortedAllContacts = allContacts;
+        sortedAllContacts.sort((o1, o2) ->
+                o1.getState().compareTo(o2.getState()));
         String temp="";
         for(Contact c: sortedAllContacts){
             temp = temp.concat(c.toString());

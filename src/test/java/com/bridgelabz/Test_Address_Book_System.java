@@ -9,11 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// Use case 11, test case:
-// Ability to sort the entries in the address book alphabetically by Person’s name
-// - Use Console to sort person details by name
+// Use case 12, test case:
+// Ability to sort the entries in the address book by City, State, or Zip
+// - Write functions to sort person by City, State or Zip
 // - Use Collection Library for Sorting
-// - Override toString method to finally Print Person Entry in Console
 // - Use Java Streams
 public class Test_Address_Book_System {
     ArrayList<Contact> allContacts = new ArrayList<>();
@@ -113,5 +112,16 @@ public class Test_Address_Book_System {
         String expected = "Contact{First Name ='Mrinal', Last Name ='Keshav', Address ='N-7', City ='Patna', State ='Bihar', Email ='mrinal@gmail.com', Phone Number ='9998887776', Zip Code =431005}Contact{First Name ='Nikhil', Last Name ='Namdev', Address ='N-6', City ='Aurangabad', State ='Maharashtra', Email ='nikhil@gmail.com', Phone Number ='9988776655', Zip Code =431004}Contact{First Name ='Pavan', Last Name ='Zore', Address ='N-8', City ='Gangapur', State ='Maharashtra', Email ='pavan@@gmail.com', Phone Number ='9999888876', Zip Code =431006}Contact{First Name ='Prakash', Last Name ='Zodge', Address ='N-5', City ='Aurangabad', State ='Maharashtra', Email ='prakash.zodge.bridgelabz@gmail.com', Phone Number ='9876543210', Zip Code =431003}";
         String actual = c.sortedAllContacts();
         Assert.assertEquals(expected,actual);
+    }
+    // Ability to sort the entries in the address book by City, State, or Zip
+    // - Write functions to sort person by City, State or Zip
+    @Test
+    public void test_sortedByCity_and_sortedByState(){
+        String expectedCity = "Contact{First Name ='Prakash', Last Name ='Zodge', Address ='N-5', City ='Aurangabad', State ='Maharashtra', Email ='prakash.zodge.bridgelabz@gmail.com', Phone Number ='9876543210', Zip Code =431003}Contact{First Name ='Nikhil', Last Name ='Namdev', Address ='N-6', City ='Aurangabad', State ='Maharashtra', Email ='nikhil@gmail.com', Phone Number ='9988776655', Zip Code =431004}Contact{First Name ='Pavan', Last Name ='Zore', Address ='N-8', City ='Gangapur', State ='Maharashtra', Email ='pavan@@gmail.com', Phone Number ='9999888876', Zip Code =431006}Contact{First Name ='Mrinal', Last Name ='Keshav', Address ='N-7', City ='Patna', State ='Bihar', Email ='mrinal@gmail.com', Phone Number ='9998887776', Zip Code =431005}";
+        String actualCity = c.sortedByCity();
+        Assert.assertEquals(expectedCity,actualCity);
+        String expectedState = "Contact{First Name ='Mrinal', Last Name ='Keshav', Address ='N-7', City ='Patna', State ='Bihar', Email ='mrinal@gmail.com', Phone Number ='9998887776', Zip Code =431005}Contact{First Name ='Prakash', Last Name ='Zodge', Address ='N-5', City ='Aurangabad', State ='Maharashtra', Email ='prakash.zodge.bridgelabz@gmail.com', Phone Number ='9876543210', Zip Code =431003}Contact{First Name ='Nikhil', Last Name ='Namdev', Address ='N-6', City ='Aurangabad', State ='Maharashtra', Email ='nikhil@gmail.com', Phone Number ='9988776655', Zip Code =431004}Contact{First Name ='Pavan', Last Name ='Zore', Address ='N-8', City ='Gangapur', State ='Maharashtra', Email ='pavan@@gmail.com', Phone Number ='9999888876', Zip Code =431006}";
+        String actualState = c.sortedByState();
+        Assert.assertEquals(expectedState,actualState);
     }
 }
