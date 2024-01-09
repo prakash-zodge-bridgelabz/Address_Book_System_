@@ -5,9 +5,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-// Use case 10:
-// Ability to get number of contact persons i.e. count by City or State
-// - Search Result will show count by city and by state
+// Use case 11:
+// Ability to sort the entries in the address book alphabetically by Person’s name
+// - Use Console to sort person details by name
+// - Use Collection Library for Sorting
+// - Override toString method to finally Print Person Entry in Console
 // - Use Java Streams
 class Contact{
     String first_name,last_name,address,city,state,email,phone_number;
@@ -29,6 +31,18 @@ class Contact{
     ArrayList<Contact> allContacts = new ArrayList<>();
     void setAllContacts(ArrayList<Contact> allContacts){
         this.allContacts = allContacts;
+    }
+    //Sorted all contacts by their first name
+    String sortedAllContacts(){
+        ArrayList<Contact> sortedAllContacts = new ArrayList<>();
+        sortedAllContacts = allContacts;
+        sortedAllContacts.sort((o1, o2) ->
+                o1.getFirst_name().compareTo(o2.getFirst_name()));
+        String temp="";
+        for(Contact c: sortedAllContacts){
+            temp = temp.concat(c.toString());
+        }
+        return temp;
     }
     // Create a collection to store persons
     Map<String, Contact> cityPersonMap = new HashMap<>();
