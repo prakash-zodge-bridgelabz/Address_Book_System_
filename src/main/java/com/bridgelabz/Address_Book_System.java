@@ -1,11 +1,15 @@
 package com.bridgelabz;
 
-import java.util.ArrayList;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-// Use case 8:
-// Ability to search Person in a City or State across the multiple AddressBook
-// Search Result can show multiple person in the city or state
-// Use Java Streams
+// Use case 9:
+// Ability to view Persons by City or State
+// - Maintain Dictionary of City and Person as well as State and Person
+// - Use Collection Library to maintain Dictionary
+// - Use Java Streams
 class Contact{
     String first_name,last_name,address,city,state,email,phone_number;
     int zip;
@@ -27,6 +31,33 @@ class Contact{
     void setAllContacts(ArrayList<Contact> allContacts){
         this.allContacts = allContacts;
     }
+    // Create a collection to store persons
+    Map<String, Contact> cityPersonMap = new HashMap<>();
+    void setCityPersonMap(Map<String, Contact> cityPersonMap){
+        this.cityPersonMap = cityPersonMap;
+    }
+    Map<String, Contact> statePersonMap = new HashMap<>();
+    void setStatePersonMap(Map<String, Contact> statePersonMap){
+        this.statePersonMap = statePersonMap;
+    }
+    // View persons by city
+    List<String> viewPersonByCity(String city){
+        List<String> contactNames = new ArrayList<>();
+        contactNames= cityPersonMap.values().stream()
+                .filter(contact -> contact.getCity().equals(city))
+                .map(Contact::getFirst_name)
+                .collect(Collectors.toList());
+        return contactNames;
+    }
+    // View persons by state
+    List<String>  viewPersonByState(String state){
+        List<String> contactNames = new ArrayList<>();
+        contactNames= cityPersonMap.values().stream()
+                .filter(contact -> contact.getState().equals(state))
+                .map(Contact::getFirst_name)
+                .collect(Collectors.toList());
+        return contactNames;
+    }
     // Search person using city or state
     String searchPersonUsingCityOrState(String cityOrState){
         ArrayList<Contact> filteredContacts = new ArrayList<>();
@@ -34,7 +65,6 @@ class Contact{
                 .filter(p->p.getCity().equals(cityOrState)
                         | p.getState().equals(cityOrState))
                 .forEach(filteredContacts::add);
-//        filteredContacts.forEach(System.out::println);
         String temp="";
         for(Contact c: filteredContacts){
             temp = temp.concat(c.toString());
